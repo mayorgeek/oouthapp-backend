@@ -1,4 +1,4 @@
-package com.kaptain.oouthapp.oouthapp.controller.auth;
+package com.kaptain.oouthapp.oouthapp.controller;
 
 import com.kaptain.oouthapp.oouthapp.dtos.request.NewTransactionRequest;
 import com.kaptain.oouthapp.oouthapp.entities.Transaction;
@@ -32,9 +32,9 @@ public class TransactionController {
         Transaction transaction = Transaction.builder()
                 .referenceId(String.valueOf(UUID.randomUUID()))
                 .patientId(principal.getSubject())
-                .paymentDate(request.getPaymentDate())
-                .paymentTime(request.getPaymentTime())
                 .amount(Double.valueOf(request.getAmount()))
+                .status("successful")
+                .narration(request.getNarration())
                 .build();
         transactionRepository.save(transaction);
         return ResponseEntity.ok()
@@ -51,6 +51,31 @@ public class TransactionController {
                 .body(
                         ApiResponse.builder()
                                 .data(transactionRepository.findAll())
+                                .build()
+                );
+    }
+
+    @GetMapping("/patient")
+    public ResponseEntity<ApiResponse> listPatientTransactions() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken) throw new RuntimeException("No currently authenticated user!");
+
+        Jwt principal = (Jwt) authentication.getPrincipal();
+
+        return ResponseEntity.ok()
+                .body(
+                        ApiResponse.builder()
+                                .data(transactionRepository.findAllByPatientId(principal.getSubject()))
+                                .build()
+                );
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<ApiResponse> count() {
+        return ResponseEntity.ok()
+                .body(
+                        ApiResponse.builder()
+                                .data(transactionRepository.count())
                                 .build()
                 );
     }

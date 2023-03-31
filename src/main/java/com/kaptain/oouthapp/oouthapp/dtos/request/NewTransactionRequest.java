@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class NewTransactionRequest {
     @NotNull
-    private String paymentDate;
-    @NotNull
-    private String paymentTime;
-    @NotNull
     private String amount;
+    @NotNull
+    private String narration;
 }

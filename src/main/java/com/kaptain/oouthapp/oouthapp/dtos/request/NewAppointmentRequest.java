@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class NewAppointmentRequest {
     @NotNull
-    private String name;
+    private String doctorName;
     @NotNull
     private String preferredDate;
     @NotNull

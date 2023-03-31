@@ -47,7 +47,7 @@ public class LoginController {
                 );
     }
 
-    @PostMapping("doctor")
+    @PostMapping("/doctor")
     public ResponseEntity<LoginResponse> loginDoctor(@RequestBody @Valid DoctorLoginRequest request) {
         Doctor doctor = doctorRepository.findByDoctorId(request.getDoctorId())
                 .orElseThrow(DoctorNotFoundException::new);

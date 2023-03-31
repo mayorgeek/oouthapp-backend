@@ -1,4 +1,4 @@
-package com.kaptain.oouthapp.oouthapp.controller.auth;
+package com.kaptain.oouthapp.oouthapp.controller;
 
 import com.kaptain.oouthapp.oouthapp.dtos.request.StoreDrugRequest;
 import com.kaptain.oouthapp.oouthapp.entities.Drug;
@@ -7,13 +7,10 @@ import com.kaptain.oouthapp.oouthapp.repository.DrugRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/drug")
+@RequestMapping("/drugs")
 @RequiredArgsConstructor
 public class DrugController {
 
@@ -36,6 +33,16 @@ public class DrugController {
                 .body(
                         ApiResponse.builder()
                                 .message(message)
+                                .build()
+                );
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse> list() {
+        return ResponseEntity.ok()
+                .body(
+                        ApiResponse.builder()
+                                .data(drugRepository.findAll())
                                 .build()
                 );
     }

@@ -10,13 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class StoreHealthRequest {
+public class AddPrescriptionRequest {
     @NotNull
-    private String patientId;
+    private String drug;
     @NotNull
-    private String doctorId;
-    @NotNull
-    private String date;
-    @NotNull
-    private String symptoms;
+    private Long appointment;
 }

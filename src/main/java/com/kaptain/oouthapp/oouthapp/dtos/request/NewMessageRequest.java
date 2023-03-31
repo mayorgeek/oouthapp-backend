@@ -10,13 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class StorePaymentRequest {
+public class NewMessageRequest {
     @NotNull
     private String patientId;
     @NotNull
-    private String paymentId;
-    @NotNull
-    private String time;
-    @NotNull
-    private String updatedBy;
+    private String body;
 }

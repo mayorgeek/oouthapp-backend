@@ -22,12 +22,12 @@ public class Transaction {
     private String referenceId;
     @Column(name = "patient_id")
     private String patientId;
-    @Column(name = "payment_date")
-    private String paymentDate;
-    @Column(name = "payment_time")
-    private String paymentTime;
     @Column(name = "amount")
     private Double amount;
+    @Column(name = "status", nullable = false)
+    private String status;
+    @Column(name = "narration", nullable = false)
+    private String narration;
 
     @CreationTimestamp
     @Column(name = "created_at")

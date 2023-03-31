@@ -34,12 +34,10 @@ public class RegistrationController {
     @PostMapping("/patient")
     public ResponseEntity<ApiResponse> createPatient(@RequestBody @Valid PatientRegisterRequest request) {
         String patientId = "P" + Math.round(Math.random() * 100000);
-        String icNumber = String.valueOf(Math.round(Math.random() * 1000000000));
 
         Patient patient = Patient.builder()
                 .patientId(patientId)
                 .name(request.getName())
-                .icNumber(icNumber)
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
         patientRepository.save(patient);
@@ -59,8 +57,8 @@ public class RegistrationController {
         String doctorId = "D" + Math.round(Math.random() * 100000);
 
         Doctor doctor = Doctor.builder()
-                .name(request.getName())
                 .doctorId(doctorId)
+                .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
         doctorRepository.save(doctor);

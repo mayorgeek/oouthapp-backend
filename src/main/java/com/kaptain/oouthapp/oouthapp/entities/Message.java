@@ -12,24 +12,18 @@ import java.sql.Timestamp;
 @Getter @Setter
 @Builder
 @Entity
-@Table(name = "appointments")
-public class Appointment {
+@Table(name = "messages")
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "doctor_name", nullable = false)
-    private String doctorName;
     @Column(name = "patient_id", nullable = false)
     private String patientId;
-    @Column(name = "preferred_date", nullable = false)
-    private String preferredDate;
-    @Column(name = "preferred_time", nullable = false)
-    private String preferredTime;
 
-    @Column(name = "prescription", nullable = true)
-    private String prescription;
+    @Column(name = "body", nullable = false)
+    private String body;
 
     @CreationTimestamp
     @Column(name = "created_at")

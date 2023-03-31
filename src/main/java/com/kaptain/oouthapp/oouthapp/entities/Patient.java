@@ -22,9 +22,6 @@ public class Patient {
     @Column(name = "patient_id", unique = true)
     private String patientId;
 
-    @Column(name = "ic_number")
-    private String icNumber;
-
     @Column(name = "name")
     private String name;
 
